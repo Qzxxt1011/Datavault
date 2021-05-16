@@ -10,6 +10,6 @@
 
 ## What next?
 Explore the program,
-Visit the wiki,
+Visit the [wiki](https://github.com/TheC0mpu1er/Datavault/wiki),
 Delve deep into the code,
 Show your friends!
