@@ -30,7 +30,7 @@ const fileSystem = () => {
         name: 'wn',
         message: 'What next?',
         type: 'list',
-        choices: ['Read a file', 'Create a file', 'Edit a file', 'Make a directory', new inquirer.Separator, 'Abort']
+        choices: ['Read a file', 'Create a file', 'Delete a file','Edit a file', new inquirer.Separator, 'Make a directory', 'Delete a directory', new inquirer.Separator, 'Abort', new inquirer.Separator]
     })
     .then(answers => {
         switch (answers.wn) {
@@ -62,6 +62,22 @@ const fileSystem = () => {
                 }])
                 .then(answers => {
                     fs.writeFileSync(`${answers.nf}\\${answers.name}`, '')
+                    console.clear()
+                    console.log('Loading...')
+                    setTimeout(() => {
+                        fileSystem()
+                    }, 2000)
+                })
+                break
+            case 'Delete a file':
+                inquirer.prompt({
+                    name: 'file',
+                    message: 'What file to delete?',
+                    type: 'fileselect',
+                    root: rootDir()
+                })
+                .then(answers => {
+                    fs.unlinkSync(answers.file)
                     console.clear()
                     console.log('Loading...')
                     setTimeout(() => {
@@ -104,6 +120,22 @@ const fileSystem = () => {
                 }])
                 .then(answers => {
                     fs.mkdirSync(`${answers.nd}\\${answers.name}`)
+                    console.clear()
+                    console.log('Loading...')
+                    setTimeout(() => {
+                        fileSystem()
+                    }, 2000)
+                })
+                break
+            case 'Delete a directory':
+                inquirer.prompt({
+                    name: 'dir',
+                    message: 'What directory to delete?',
+                    type: 'fileselect',
+                    root: rootDir()
+                })
+                .then(answers => {
+                    fs.rmdirSync(answers.dir)
                     console.clear()
                     console.log('Loading...')
                     setTimeout(() => {
