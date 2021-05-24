@@ -3,6 +3,8 @@ const figlet = require('figlet').textSync
 const chalk = require('chalk')
 const inquirer = require('inquirer')
 const fs = require('fs')
+const look = require('./js/look')
+const sdo = require('./js/sdo')
 inquirer.registerPrompt('fileselect', require('inquirer-file-tree-selection-prompt'))
 
 function userdata(fileName) {
@@ -30,7 +32,7 @@ const fileSystem = () => {
         name: 'wn',
         message: 'What next?',
         type: 'list',
-        choices: ['Read a file', 'Create a file', 'Delete a file','Edit a file', new inquirer.Separator, 'Make a directory', 'Delete a directory', new inquirer.Separator, 'Abort', new inquirer.Separator]
+        choices: ['Read a file', 'Create a file', 'Delete a file', 'Edit a file', new inquirer.Separator, 'Make a directory', 'Delete a directory', new inquirer.Separator, 'Abort', new inquirer.Separator]
     })
     .then(answers => {
         switch (answers.wn) {
